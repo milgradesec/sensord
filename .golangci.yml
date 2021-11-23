@@ -55,7 +55,3 @@ linters:
     - wastedassign
     - forcetypeassert
     - goheader
-
-run:
-  skip-dirs:
-    - testdata
