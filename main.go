@@ -51,19 +51,17 @@ func main() {
 
 	nextBeat := time.Now()
 	for {
-		nextBeat = nextBeat.Add(time.Minute / time.Duration(heartRate))
 		fmt.Println("Time:" + time.Now().Format("04:05.000") + " -- Value: " + strconv.FormatUint(uint64(heartRate), 10))
-		time.Sleep(nextBeat.Sub(time.Now()))
 
-		// random variation in heartrate
+		nextBeat = nextBeat.Add(time.Minute / time.Duration(heartRate))
+		time.Sleep(time.Until(nextBeat))
+
 		heartRate = randomInt(65, 85)
-
-		// and push the next notification
-		heartRateMeasurement.Write([]byte{0, heartRate})
+		heartRateMeasurement.Write([]byte{0, heartRate}) //nolint
 	}
 }
 
 // Returns an int >= min, < max
 func randomInt(min, max int) uint8 {
-	return uint8(min + rand.Intn(max-min))
+	return uint8(min + rand.Intn(max-min)) //nolint
 }
