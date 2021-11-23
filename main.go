@@ -61,7 +61,6 @@ func main() {
 	}
 }
 
-// Returns an int >= min, < max.
 func randomInt(min, max int) uint8 {
 	return uint8(min + rand.Intn(max-min)) //nolint
 }
