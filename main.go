@@ -14,7 +14,7 @@ var adapter = bluetooth.DefaultAdapter
 var heartRate uint8 = 75
 
 func main() {
-	fmt.Println("starting")
+	fmt.Println("Starting BLE Service.")
 
 	if err := adapter.Enable(); err != nil {
 		panic(err)
