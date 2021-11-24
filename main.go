@@ -51,7 +51,7 @@ func main() {
 
 	nextBeat := time.Now()
 	for {
-		fmt.Println("Time:" + time.Now().Format("04:05.000") + " -- Value: " + strconv.FormatUint(uint64(heartRate), 10))
+		fmt.Println("Time:" + time.Now().Format("15:04:05") + " -- Value: " + strconv.FormatUint(uint64(heartRate), 10))
 
 		nextBeat = nextBeat.Add(time.Minute / time.Duration(heartRate))
 		time.Sleep(time.Until(nextBeat))
