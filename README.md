@@ -1,1 +1,1 @@
-# sensord
+# Agrosensor BLE daemon
