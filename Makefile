@@ -25,3 +25,6 @@ build:
 .PHONY: run
 run:
 	sudo ./sensord
+
+.PHONY: install
+install: build
