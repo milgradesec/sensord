@@ -1,0 +1,12 @@
+[Unit]
+Description=Sensord Service
+Requires=bluetooth.target
+After=bluetooth.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/sensord
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
