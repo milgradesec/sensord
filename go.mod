@@ -9,7 +9,7 @@ require (
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/godbus/dbus/v5 v5.0.6 // indirect
-	github.com/muka/go-bluetooth v0.0.0-20211122080231-b99792bbe62a // indirect
+	github.com/muka/go-bluetooth v0.0.0-20211227073548-985739196620 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
 	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
 )
