@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"math/rand"
-	"strconv"
 	"time"
 
 	"tinygo.org/x/bluetooth"
@@ -22,7 +21,7 @@ func main() {
 
 	adv := adapter.DefaultAdvertisement()
 	err := adv.Configure(bluetooth.AdvertisementOptions{
-		LocalName:    "AGROSENSOR",
+		LocalName:    "AgroSensor v1",
 		ServiceUUIDs: []bluetooth.UUID{bluetooth.ServiceUUIDHeartRate},
 	})
 	if err != nil {
@@ -51,7 +50,7 @@ func main() {
 
 	nextBeat := time.Now()
 	for {
-		fmt.Println("Time:" + time.Now().Format("15:04:05") + " -- Value: " + strconv.FormatUint(uint64(heartRate), 10))
+		// fmt.Println("Time:" + time.Now().Format("15:04:05") + " -- Value: " + strconv.FormatUint(uint64(heartRate), 10))
 
 		nextBeat = nextBeat.Add(time.Minute / time.Duration(heartRate))
 		time.Sleep(time.Until(nextBeat))
