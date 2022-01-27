@@ -27,4 +27,5 @@ run:
 	./sensord
 
 .PHONY: install
-install: build
+install:
+	cp sensord /usr/bin/sensord
