@@ -11,5 +11,5 @@ require (
 	github.com/godbus/dbus/v5 v5.0.6 // indirect
 	github.com/muka/go-bluetooth v0.0.0-20211227073548-985739196620 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
-	golang.org/x/sys v0.0.0-20220114195835-da31bd327af9 // indirect
+	golang.org/x/sys v0.0.0-20220128215802-99c3d69c2c27 // indirect
 )
