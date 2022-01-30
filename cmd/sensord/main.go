@@ -29,12 +29,6 @@ func main() {
 	}
 	go sr.Start()
 
-	// go func() {
-	// 	for {
-	// 		fmt.Printf("%s", <-ch)
-	// 	}
-	// }()
-
 	if err := ble.StartGATTService(ch); err != nil {
 		log.Fatal().Msgf("failed to start GATT service: %v", err)
 	}
