@@ -4,7 +4,7 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/milgradesec/sensord/internal/ble"
+	"github.com/milgradesec/sensord/internal/bluetooth"
 	"github.com/milgradesec/sensord/internal/serial"
 
 	"github.com/rs/zerolog"
@@ -17,7 +17,7 @@ func main() {
 	log.Info().Msgf("Sensord %s", Version)
 	log.Info().Msgf("%s/%s %s", runtime.GOOS, runtime.GOARCH, runtime.Version())
 
-	if err := ble.EnableAdapter(); err != nil {
+	if err := bluetooth.EnableAdapter(); err != nil {
 		log.Fatal().Msgf("failed to enable BLE adapter: %v", err)
 	}
 	log.Info().Msg("BLE stack enabled")
@@ -29,7 +29,7 @@ func main() {
 	}
 	go sr.Start()
 
-	if err := ble.StartGATTService(ch); err != nil {
+	if err := bluetooth.StartGATTService(ch); err != nil {
 		log.Fatal().Msgf("failed to start GATT service: %v", err)
 	}
 }
