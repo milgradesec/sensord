@@ -74,7 +74,7 @@ func StartGATTService(ch chan string) error {
 		if value != lastValue {
 			lastValue = value
 			n, _ := strconv.ParseUint(value, 10, 16)
-			b := make([]byte, 4)
+			b := make([]byte, 2)
 			binary.LittleEndian.PutUint16(b, uint16(n))
 
 			// fmt.Printf("Value: %s, Bytes -> %v\n", value, b)
