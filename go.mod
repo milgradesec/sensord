@@ -4,10 +4,9 @@ go 1.17
 
 require tinygo.org/x/bluetooth v0.4.0
 
-require github.com/creack/goselect v0.1.2 // indirect
-
 require (
 	github.com/JuulLabs-OSS/cbgo v0.0.2 // indirect
+	github.com/creack/goselect v0.1.2 // indirect
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/godbus/dbus/v5 v5.0.6 // indirect
