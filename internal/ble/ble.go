@@ -1,6 +1,9 @@
 package ble
 
 import (
+	"encoding/binary"
+	"strconv"
+
 	"github.com/rs/zerolog/log"
 	"tinygo.org/x/bluetooth"
 )
@@ -62,8 +65,21 @@ func StartGATTService(ch chan string) error {
 
 	log.Info().Msg("Distance service running...")
 
+	var (
+		value     string
+		lastValue string
+	)
 	for {
-		distanceCharacteristic.Write([]byte(<-ch)) //nolint
+		value = <-ch
+		if value != lastValue {
+			lastValue = value
+			n, _ := strconv.ParseUint(value, 10, 16)
+			b := make([]byte, 4)
+			binary.LittleEndian.PutUint16(b, uint16(n))
+
+			// fmt.Printf("Value: %s, Bytes -> %v\n", value, b)
+			distanceCharacteristic.Write(b) //nolint
+		}
 	}
 }
 

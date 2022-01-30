@@ -45,7 +45,10 @@ func (r *Reader) Start() {
 
 		line := string(buff[:n])
 		if line != "\r\n" {
-			r.ch <- strings.TrimSuffix(line, "\r\n")
+			line = strings.TrimSuffix(line, "\r\n")
+			if len(line) > 0 {
+				r.ch <- line
+			}
 		}
 	}
 }
