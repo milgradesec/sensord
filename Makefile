@@ -10,6 +10,7 @@ all: build
 .PHONY: clean
 clean:
 	go clean
+	rm sensord
 
 .PHONY: test
 test:
