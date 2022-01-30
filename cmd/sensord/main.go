@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"runtime"
 
@@ -26,12 +25,6 @@ func main() {
 	go func() {
 		if err := serial.StartReader(ch); err != nil {
 			log.Fatal().Msgf("error reading data from serial port: %v", err)
-		}
-	}()
-
-	go func() {
-		for {
-			fmt.Printf("%s", <-ch)
 		}
 	}()
 
