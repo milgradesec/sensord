@@ -1,16 +1,14 @@
 package ble
 
 import (
-	"encoding/binary"
-	"strconv"
-
 	"github.com/rs/zerolog/log"
 	"tinygo.org/x/bluetooth"
 )
 
 var (
-	adapter    = bluetooth.DefaultAdapter
-	deviceName = "AgroSensor"
+	adapter     = bluetooth.DefaultAdapter
+	deviceName  = "AgroSensor"
+	serviceUUID = [16]byte{0x92, 0x98, 0xdc, 0xb2, 0x47, 0xb1, 0x4c, 0xb5, 0x8d, 0xfa, 0x3c, 0x86, 0x5e, 0xa8, 0x16, 0x3e}
 )
 
 func EnableAdapter() error {
@@ -23,15 +21,10 @@ func EnableAdapter() error {
 func StartGATTService(ch chan string) error {
 	adv := adapter.DefaultAdvertisement()
 
-	serviceUUID, err := bluetooth.ParseUUID(serviceUUID)
-	if err != nil {
-		return err
-	}
-
-	err = adv.Configure(bluetooth.AdvertisementOptions{
+	err := adv.Configure(bluetooth.AdvertisementOptions{
 		LocalName: deviceName,
 		ServiceUUIDs: []bluetooth.UUID{
-			serviceUUID,
+			bluetooth.NewUUID(serviceUUID),
 		},
 	})
 	if err != nil {
@@ -44,17 +37,17 @@ func StartGATTService(ch chan string) error {
 	log.Info().Msgf("Advertising device as '%s'", deviceName)
 
 	var distanceCharacteristic bluetooth.Characteristic
-	charUUID, err := bluetooth.ParseUUID(charUUID)
-	if err != nil {
-		return err
+	distanceService := &DistanceService{
+		char: &distanceCharacteristic,
+		ch:   ch,
 	}
 
 	if err = adapter.AddService(&bluetooth.Service{
-		UUID: serviceUUID,
+		UUID: bluetooth.NewUUID(serviceUUID),
 		Characteristics: []bluetooth.CharacteristicConfig{
 			{
 				Handle: &distanceCharacteristic,
-				UUID:   charUUID,
+				UUID:   bluetooth.NewUUID(distanceUUID),
 				Value:  []byte{0, 0},
 				Flags:  bluetooth.CharacteristicNotifyPermission,
 			},
@@ -62,28 +55,7 @@ func StartGATTService(ch chan string) error {
 	}); err != nil {
 		return err
 	}
+	distanceService.Handler()
 
-	log.Info().Msg("Distance service running...")
-
-	var (
-		value     string
-		lastValue string
-	)
-	for {
-		value = <-ch
-		if value != lastValue {
-			lastValue = value
-			n, _ := strconv.ParseUint(value, 10, 16)
-			b := make([]byte, 2)
-			binary.LittleEndian.PutUint16(b, uint16(n))
-
-			// fmt.Printf("Value: %s, Bytes -> %v\n", value, b)
-			distanceCharacteristic.Write(b) //nolint
-		}
-	}
+	return nil
 }
-
-var (
-	serviceUUID = "9298dcb2-47b1-4cb5-8dfa-3c865ea8163e"
-	charUUID    = "5bb31353-d8cd-4d18-a22a-e735e23b5bdc"
-)
