@@ -17,7 +17,7 @@ func EnableAdapter() error {
 	return nil
 }
 
-func StartGATTService(ch chan string) error { // nolint
+func StartGATTService(ch chan string) error {
 	adv := adapter.DefaultAdvertisement()
 
 	serviceUUID, err := bluetooth.ParseUUID(serviceUUID)
