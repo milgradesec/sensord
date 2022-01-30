@@ -15,14 +15,14 @@ type HeartRateService struct {
 	heartRate *bluetooth.Characteristic
 }
 
-func (hr *HeartRateService) Handler() {
+func (hrs *HeartRateService) Handler() {
 	nextBeat := time.Now()
 	for {
 		nextBeat = nextBeat.Add(time.Minute / time.Duration(heartRate))
 		time.Sleep(time.Until(nextBeat))
 
 		heartRate = randomInt(65, 85)
-		hr.heartRate.Write([]byte{0, heartRate}) //nolint
+		hrs.heartRate.Write([]byte{0, heartRate}) //nolint
 	}
 }
 

@@ -1,6 +1,8 @@
 package serial
 
 import (
+	"strings"
+
 	"go.bug.st/serial"
 )
 
@@ -40,7 +42,11 @@ func (r *Reader) Start() {
 			r.ch <- "EOF"
 			break
 		}
-		r.ch <- string(buff[:n])
+
+		line := string(buff[:n])
+		if line != "\r\n" {
+			r.ch <- strings.TrimSuffix(line, "\r\n")
+		}
 	}
 }
 

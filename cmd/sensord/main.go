@@ -35,7 +35,7 @@ func main() {
 	// 	}
 	// }()
 
-	if err := ble.StartGATTService(); err != nil {
+	if err := ble.StartGATTService(ch); err != nil {
 		log.Fatal().Msgf("failed to start GATT service: %v", err)
 	}
 }
