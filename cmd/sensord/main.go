@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"runtime"
 
@@ -22,9 +23,15 @@ func main() {
 	log.Info().Msg("BLE stack enabled")
 
 	ch := make(chan string)
+	sr, err := serial.NewReader(ch)
+	if err != nil {
+		log.Fatal().Msgf("failed to create serial reader: %v", err)
+	}
+	go sr.Start()
+
 	go func() {
-		if err := serial.StartReader(ch); err != nil {
-			log.Fatal().Msgf("error reading data from serial port: %v", err)
+		for {
+			fmt.Printf("%s", <-ch)
 		}
 	}()
 
