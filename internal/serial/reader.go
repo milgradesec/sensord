@@ -29,7 +29,7 @@ func NewReader(ch chan string) (*Reader, error) {
 }
 
 func (r *Reader) Start() {
-	buff := make([]byte, 100)
+	buff := make([]byte, 2048)
 	for {
 		n, err := r.port.Read(buff)
 		if err != nil {

@@ -7,6 +7,7 @@ import (
 
 	"github.com/milgradesec/sensord/internal/ble"
 	"github.com/milgradesec/sensord/internal/serial"
+
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )
