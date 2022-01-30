@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"runtime"
 
 	"github.com/milgradesec/sensord/internal/ble"
+	"github.com/milgradesec/sensord/internal/serial"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )
@@ -19,6 +21,19 @@ func main() {
 		log.Fatal().Msgf("failed to enable BLE adapter: %v", err)
 	}
 	log.Info().Msg("BLE stack enabled")
+
+	ch := make(chan string)
+	go func() {
+		if err := serial.StartReader(ch); err != nil {
+			log.Fatal().Msgf("error reading data from serial port: %v", err)
+		}
+	}()
+
+	go func() {
+		for {
+			fmt.Printf("%s", <-ch)
+		}
+	}()
 
 	if err := ble.StartGATTService(); err != nil {
 		log.Fatal().Msgf("failed to start GATT service: %v", err)
