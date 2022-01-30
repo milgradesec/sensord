@@ -24,7 +24,6 @@ lint:
 build:
 	CGO_ENABLED=$(CGO_ENABLED) $(SYSTEM) go build $(BUILDFLAGS) $(IMPORT_PATH)/cmd/sensord
 
-
 .PHONY: run
 run:
 	./sensord
