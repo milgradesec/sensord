@@ -1,6 +1,7 @@
 VERSION     := $(shell git describe --tags --always --abbrev=0)
 SYSTEM      :=
-BUILDFLAGS  := -v
+BUILDFLAGS  := -v -ldflags="-s -w -X main.Version=$(VERSION)"
+IMPORT_PATH := github.com/milgradesec/sensord
 CGO_ENABLED := 0
 
 .PHONY: all
@@ -20,7 +21,8 @@ lint:
 
 .PHONY: build
 build:
-	CGO_ENABLED=$(CGO_ENABLED) $(SYSTEM) go build $(BUILDFLAGS)
+	CGO_ENABLED=$(CGO_ENABLED) $(SYSTEM) go build $(BUILDFLAGS) $(IMPORT_PATH)/cmd/sensord
+
 
 .PHONY: run
 run:
