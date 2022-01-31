@@ -20,12 +20,12 @@ func main() {
 	ch := make(chan string)
 	sr, err := serial.NewReader(ch)
 	if err != nil {
-		log.Fatal().Msgf("failed to create serial reader: %v", err)
+		log.Fatal().Err(err).Msg("Failed to create serial reader")
 	}
 	go sr.Start()
 
 	if err := bluetooth.StartGATTService(ch); err != nil {
-		log.Fatal().Msgf("failed to start GATT service: %v", err)
+		log.Fatal().Err(err).Msg("Failed to start GATT service")
 	}
 }
 
