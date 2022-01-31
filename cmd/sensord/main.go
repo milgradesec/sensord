@@ -17,11 +17,6 @@ func main() {
 	log.Info().Msgf("Sensord %s", Version)
 	log.Info().Msgf("%s/%s %s", runtime.GOOS, runtime.GOARCH, runtime.Version())
 
-	if err := bluetooth.EnableAdapter(); err != nil {
-		log.Fatal().Msgf("failed to enable BLE adapter: %v", err)
-	}
-	log.Info().Msg("BLE stack enabled")
-
 	ch := make(chan string)
 	sr, err := serial.NewReader(ch)
 	if err != nil {
