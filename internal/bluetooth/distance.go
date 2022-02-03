@@ -4,6 +4,7 @@ import (
 	"encoding/binary"
 	"strconv"
 
+	"github.com/rs/zerolog/log"
 	"tinygo.org/x/bluetooth"
 )
 
@@ -17,6 +18,8 @@ type DistanceService struct {
 }
 
 func (ds *DistanceService) Handler() {
+	log.Info().Str("service", ds.Name()).Msg("Service running")
+
 	var (
 		value     string
 		lastValue string
@@ -29,8 +32,12 @@ func (ds *DistanceService) Handler() {
 			b := make([]byte, 2)
 			binary.LittleEndian.PutUint16(b, uint16(n))
 
-			// fmt.Printf("Value: %s, Bytes -> %v\n", value, b)
+			log.Debug().Str("service", ds.Name()).Str("value", value).Msg("BLE characteristic value updated")
 			ds.char.Write(b) //nolint
 		}
 	}
+}
+
+func (ds *DistanceService) Name() string {
+	return "distance"
 }

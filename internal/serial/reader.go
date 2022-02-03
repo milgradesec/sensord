@@ -3,6 +3,7 @@ package serial
 import (
 	"strings"
 
+	"github.com/rs/zerolog/log"
 	"go.bug.st/serial"
 )
 
@@ -47,6 +48,7 @@ func (r *Reader) Start() {
 		if line != "\r\n" {
 			line = strings.TrimSuffix(line, "\r\n")
 			if len(line) > 0 {
+				log.Debug().Str("port", defaultPort).Str("msg", line).Msg("Message received from sensor")
 				r.ch <- line
 			}
 		}

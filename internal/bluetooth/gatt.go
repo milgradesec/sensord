@@ -22,7 +22,6 @@ func StartGATTService(ch chan string) error {
 	if err := adapter.Enable(); err != nil {
 		return err
 	}
-	log.Info().Msg("BLE stack enabled")
 
 	adv := adapter.DefaultAdvertisement()
 	err := adv.Configure(bluetooth.AdvertisementOptions{
@@ -59,6 +58,8 @@ func StartGATTService(ch chan string) error {
 	}); err != nil {
 		return err
 	}
+	log.Info().Str("service", distanceService.Name()).Msg("Service successfully registered")
+
 	distanceService.Handler()
 
 	return nil
