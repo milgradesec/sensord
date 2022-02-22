@@ -13,6 +13,6 @@ require (
 	github.com/muka/go-bluetooth v0.0.0-20220219051526-e90c23574652 // indirect
 	github.com/rs/zerolog v1.26.1
 	github.com/sirupsen/logrus v1.8.1 // indirect
-	go.bug.st/serial v1.3.4
+	go.bug.st/serial v1.3.5
 	golang.org/x/sys v0.0.0-20220209214540-3681064d5158 // indirect
 )
