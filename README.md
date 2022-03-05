@@ -36,6 +36,6 @@ systemctl start sensord.service
 ## Install/Upgrade Go
 
 ```shell
-wget https://go.dev/dl/go1.17.6.linux-armv6l.tar.gz
-sudo tar -C /usr/local -xzf go1.17.6.linux-armv6l.tar.gz
+wget https://go.dev/dl/go1.17.8.linux-armv6l.tar.gz
+sudo tar -C /usr/local -xzf go1.17.8.linux-armv6l.tar.gz
 ```
