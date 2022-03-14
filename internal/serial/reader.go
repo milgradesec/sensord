@@ -11,12 +11,12 @@ var (
 	defaultPort = "/dev/ttyACM0"
 )
 
-type Reader struct {
+type SerialReader struct {
 	port serial.Port
 	ch   chan string
 }
 
-func NewReader(ch chan string) (*Reader, error) {
+func NewReader(ch chan string) (*SerialReader, error) {
 	mode := &serial.Mode{
 		BaudRate: 9600,
 	}
@@ -25,13 +25,13 @@ func NewReader(ch chan string) (*Reader, error) {
 		return nil, err
 	}
 
-	return &Reader{
+	return &SerialReader{
 		port: port,
 		ch:   ch,
 	}, nil
 }
 
-func (r *Reader) Start() {
+func (r *SerialReader) Start() {
 	buff := make([]byte, 2048)
 	for {
 		n, err := r.port.Read(buff)
@@ -55,6 +55,6 @@ func (r *Reader) Start() {
 	}
 }
 
-func (r *Reader) Close() error {
+func (r *SerialReader) Close() error {
 	return r.port.Close()
 }

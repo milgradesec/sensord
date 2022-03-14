@@ -16,6 +16,7 @@ func main() {
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stdout})
 
 	debug := flag.Bool("debug", false, "Enable debug logging.")
+	dev := flag.Bool("dev", false, "Enable development mode.")
 	flag.Parse()
 
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
@@ -27,11 +28,18 @@ func main() {
 	log.Info().Msgf("%s/%s %s", runtime.GOOS, runtime.GOARCH, runtime.Version())
 
 	ch := make(chan string)
-	sr, err := serial.NewReader(ch)
-	if err != nil {
-		log.Fatal().Err(err).Msg("Failed to create serial reader")
+	if *dev {
+		log.Info().Msg("Development mode enabled, using mock serial reader.")
+
+		sr := serial.NewMockReader(ch)
+		go sr.Start()
+	} else {
+		sr, err := serial.NewReader(ch)
+		if err != nil {
+			log.Fatal().Err(err).Msg("Failed to create serial reader")
+		}
+		go sr.Start()
 	}
-	go sr.Start()
 
 	if err := bluetooth.StartGATTService(ch); err != nil {
 		log.Fatal().Err(err).Msg("Failed to start GATT service")
