@@ -10,9 +10,9 @@ require (
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/godbus/dbus/v5 v5.1.0 // indirect
-	github.com/muka/go-bluetooth v0.0.0-20220313192054-376d2a8b87bd // indirect
+	github.com/muka/go-bluetooth v0.0.0-20220319164423-1763af51ee1a // indirect
 	github.com/rs/zerolog v1.26.1
 	github.com/sirupsen/logrus v1.8.1 // indirect
 	go.bug.st/serial v1.3.5
-	golang.org/x/sys v0.0.0-20220315194320-039c03cc5b86 // indirect
+	golang.org/x/sys v0.0.0-20220319134239-a9b59b0215f8 // indirect
 )
