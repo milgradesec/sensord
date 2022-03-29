@@ -15,7 +15,7 @@ sensord
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
-!cmd/sensord
-
 # Snyk
 .dccache
+
+!cmd/sensord
