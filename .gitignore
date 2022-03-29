@@ -16,3 +16,6 @@ sensord
 # vendor/
 
 !cmd/sensord
+
+# Snyk
+.dccache
