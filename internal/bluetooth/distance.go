@@ -21,20 +21,15 @@ func (ds *DistanceService) Handler() {
 	log.Info().Str("service", ds.Name()).Msg("Service running")
 
 	var (
-		value     string
-		lastValue string
+		value string
 	)
 	for {
 		value = <-ds.ch
-		if value != lastValue {
-			lastValue = value
-			n, _ := strconv.ParseUint(value, 10, 16)
-			b := make([]byte, 2)
-			binary.LittleEndian.PutUint16(b, uint16(n))
 
-			log.Debug().Str("service", ds.Name()).Str("value", value).Msg("BLE characteristic value updated")
-			ds.char.Write(b) //nolint
-		}
+		n, _ := strconv.ParseUint(value, 10, 16)
+		b := make([]byte, 2)
+		binary.LittleEndian.PutUint16(b, uint16(n))
+		ds.char.Write(b) //nolint
 	}
 }
 
