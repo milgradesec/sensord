@@ -26,7 +26,7 @@ build:
 
 .PHONY: run
 run:
-	./sensord
+	./sensord -dev
 
 .PHONY: install
 install:
