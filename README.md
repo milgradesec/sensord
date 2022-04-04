@@ -11,26 +11,31 @@ make build
 Install `sensord` binary
 
 ```shell
-cp sensord /usr/bin/sensord
+sudo cp sensord /usr/bin/sensord
 ```
 
 Copy unit file to `/lib/systemd/system/`
 
 ```shell
-cp systemd/sensord.service /lib/systemd/system/sensord.service
+sudo cp systemd/sensord.service /lib/systemd/system/sensord.service
 ```
 
 Reload systemd units
 
 ```shell
-systemctl daemon-reload
+sudo systemctl daemon-reload
 ```
 
 Enable `sensord.service` and start the service
 
 ```shell
-systemctl enable sensord.service
-systemctl start sensord.service
+sudo systemctl enable sensord.service
+sudo systemctl start sensord.service
+```
+
+Check if running properly
+```shell
+sudo systemctl status sensord
 ```
 
 ## Install/Upgrade Go
