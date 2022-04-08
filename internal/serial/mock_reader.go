@@ -18,7 +18,7 @@ func NewMockReader(ch chan string) *MockReader {
 
 func (r *MockReader) Start() {
 	for {
-		time.Sleep(time.Second)
+		time.Sleep(100 * time.Millisecond)
 
 		n := rand.Intn(1023-300) + 300 //nolint
 		r.ch <- fmt.Sprintf("%d", n)
