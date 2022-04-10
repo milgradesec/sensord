@@ -20,7 +20,7 @@ func (r *MockReader) Start() {
 	for {
 		time.Sleep(300 * time.Millisecond)
 
-		n := rand.Intn(1023-300) + 300 //nolint
+		n := rand.Intn(1023-500) + 500 //nolint
 		r.ch <- fmt.Sprintf("%d", n)
 	}
 }
