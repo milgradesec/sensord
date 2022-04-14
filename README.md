@@ -41,8 +41,8 @@ sudo systemctl status sensord
 ## Install/Upgrade Go
 
 ```shell
-wget https://go.dev/dl/go1.18.linux-armv6l.tar.gz
+wget https://go.dev/dl/go1.18.1.linux-armv6l.tar.gz
 sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf go1.18.linux-armv6l.tar.gz
+sudo tar -C /usr/local -xzf go1.18.1.linux-armv6l.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 ```
