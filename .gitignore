@@ -5,6 +5,7 @@
 *.so
 *.dylib
 sensord
+!cmd/sensord
 
 # Test binary, built with `go test -c`
 *.test
@@ -14,8 +15,3 @@ sensord
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
-
-# Snyk
-.dccache
-
-!cmd/sensord
