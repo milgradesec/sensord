@@ -4,7 +4,7 @@ After=bluetooth.target
 Requires=bluetooth.target
 
 [Service]
-ExecStart=/usr/bin/sensord -dev
+ExecStart=/usr/bin/sensord
 Restart=on-failure
 
 [Install]
