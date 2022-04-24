@@ -1,0 +1,30 @@
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: sensord
+    env:
+      - CGO_ENABLED=0
+    main: ./cmd/sensord/main.go
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w -X main.Version={{.Tag}}
+    goos:
+      - linux
+    goarch:
+      - arm
+
+archives:
+  - replacements:
+      linux: Linux
+
+checksum:
+  name_template: "checksums.txt"
+
+snapshot:
+  name_template: "{{ .ProjectName }}-{{ .Version }}"
+
+changelog:
+  skip: true
