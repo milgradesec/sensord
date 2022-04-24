@@ -17,7 +17,7 @@ builds:
       - arm
 
 archives:
-  - name_template: "sensord-{{ .Version }}"
+  - name_template: "sensord-v{{ .Version }}"
     format: binary
 
 checksum:
