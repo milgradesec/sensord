@@ -52,7 +52,7 @@ func StartGATTService(ch chan string) error {
 				Handle: &distanceCharacteristic,
 				UUID:   bluetooth.NewUUID(distanceUUID),
 				Value:  []byte{0, 0},
-				Flags:  bluetooth.CharacteristicNotifyPermission,
+				Flags:  bluetooth.CharacteristicNotifyPermission | bluetooth.CharacteristicReadPermission,
 			},
 		},
 	}); err != nil {
