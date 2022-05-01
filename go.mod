@@ -2,7 +2,7 @@ module github.com/milgradesec/sensord
 
 go 1.17
 
-require tinygo.org/x/bluetooth v0.4.0
+require tinygo.org/x/bluetooth v0.5.0
 
 require (
 	github.com/JuulLabs-OSS/cbgo v0.0.2 // indirect
@@ -14,5 +14,5 @@ require (
 	github.com/rs/zerolog v1.26.1
 	github.com/sirupsen/logrus v1.8.1 // indirect
 	go.bug.st/serial v1.3.5
-	golang.org/x/sys v0.0.0-20220422013727-9388b58f7150 // indirect
+	golang.org/x/sys v0.0.0-20220429233432-b5fbb4746d32 // indirect
 )
