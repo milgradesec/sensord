@@ -5,18 +5,22 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/milgradesec/sensord/internal/bluetooth"
-	"github.com/milgradesec/sensord/internal/serial"
-
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
+
+	"github.com/kardianos/service"
+
+	sensord "github.com/milgradesec/sensord/internal/service"
 )
 
 func main() {
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stdout})
 
-	debug := flag.Bool("debug", false, "Enable debug logging.")
-	dev := flag.Bool("dev", false, "Enable development mode.")
+	var (
+		debug       = flag.Bool("debug", false, "Enable debug logging.")
+		dev         = flag.Bool("dev", false, "Enable development mode.")
+		serviceFlag = flag.String("service", "", "Manage system service.")
+	)
 	flag.Parse()
 
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
@@ -27,22 +31,48 @@ func main() {
 	log.Info().Msgf("Sensord %s", Version)
 	log.Info().Msgf("%s/%s %s", runtime.GOOS, runtime.GOARCH, runtime.Version())
 
-	ch := make(chan string)
-	if *dev {
-		log.Info().Msg("Development mode enabled, using mock serial reader.")
+	svcConfig := &service.Config{
+		Name:        "sensord",
+		DisplayName: "sensord",
+		Description: "Sensord service",
 
-		sr := serial.NewMockReader(ch)
-		go sr.Start()
-	} else {
-		sr, err := serial.NewReader(ch)
-		if err != nil {
-			log.Fatal().Err(err).Msg("Failed to create serial reader")
-		}
-		go sr.Start()
+		Dependencies: []string{
+			"After=bluetooth.target",
+			"Requires=bluetooth.target",
+		},
 	}
 
-	if err := bluetooth.StartGATTService(ch); err != nil {
-		log.Fatal().Err(err).Msg("Failed to start GATT service")
+	s := &sensord.Service{
+		Development: *dev,
+	}
+	svc, err := service.New(s, svcConfig)
+	if err != nil {
+		log.Fatal().Err(err).Msg("failed to create service")
+	}
+
+	if *serviceFlag != "" {
+		if err := service.Control(svc, *serviceFlag); err != nil {
+			log.Fatal().Err(err).Msg("service control error")
+		}
+
+		switch *serviceFlag {
+		case "install":
+			log.Info().Msg("Service installed successfully.")
+		case "uninstall":
+			log.Info().Msg("Service removed successfully.")
+		case "start":
+			log.Info().Msg("Service started.")
+		case "stop":
+			log.Info().Msg("Service stopped.")
+		case "restart":
+			log.Info().Msg("Service restarted.")
+		default:
+			log.Error().Msgf("invalid argument: %s", *serviceFlag)
+		}
+		return
+	}
+	if err := svc.Run(); err != nil {
+		log.Fatal().Err(err).Msg("failed to start service")
 	}
 }
 

@@ -10,6 +10,7 @@ require (
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/godbus/dbus/v5 v5.1.0 // indirect
+	github.com/kardianos/service v1.2.1
 	github.com/muka/go-bluetooth v0.0.0-20220323170840-382ca1d29f29 // indirect
 	github.com/rs/zerolog v1.26.1
 	github.com/sirupsen/logrus v1.8.1 // indirect
