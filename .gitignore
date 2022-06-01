@@ -16,4 +16,8 @@ sensord
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
+# VS Code
+.vscode/
+
+# Goreleaser
 dist/
