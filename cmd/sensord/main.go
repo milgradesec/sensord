@@ -13,7 +13,7 @@ import (
 	sensord "github.com/milgradesec/sensord/internal/service"
 )
 
-func main() {
+func main() { //nolint
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stdout})
 
 	var (
