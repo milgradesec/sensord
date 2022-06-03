@@ -10,7 +10,7 @@ builds:
     goarch:
       - arm
     goarm:
-      - 6 
+      - 6
     main: ./cmd/sensord/main.go
     ldflags:
       - -s -w -X main.Version={{.Tag}} -X main.Commit={{.Commit}} -X main.BuildTime={{.Date}}
