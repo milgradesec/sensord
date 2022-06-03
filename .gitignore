@@ -21,3 +21,5 @@ sensord
 
 # Goreleaser
 dist/
+
+dist/

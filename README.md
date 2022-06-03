@@ -45,4 +45,5 @@ wget https://go.dev/dl/go1.18.3.linux-armv6l.tar.gz
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf go1.18.3.linux-armv6l.tar.gz
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/pi/go/bin
 ```

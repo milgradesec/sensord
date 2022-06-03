@@ -1,8 +1,9 @@
-VERSION     := $(shell git describe --tags --always --abbrev=0)
+VERSION     := $(shell git describe --tags --always --abbrev=8)
 SYSTEM      :=
-BUILDFLAGS  := -v -ldflags="-s -w -X main.Version=$(VERSION)"
 IMPORT_PATH := github.com/milgradesec/sensord
 CGO_ENABLED := 0
+DATE        := $(shell date -u '+%Y-%m-%d-%H%M UTC')
+BUILDFLAGS  := -v -ldflags="-s -w -X main.Version=$(VERSION)"
 
 .PHONY: all
 all: build

@@ -20,12 +20,19 @@ func main() {
 		debug       = flag.Bool("debug", false, "Enable debug logging.")
 		dev         = flag.Bool("dev", false, "Enable development mode.")
 		serviceFlag = flag.String("service", "", "Manage system service.")
+		version     = flag.Bool("version", false, "Show version information.")
 	)
 	flag.Parse()
 
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	if *debug {
 		zerolog.SetGlobalLevel(zerolog.DebugLevel)
+	}
+
+	if *version {
+		log.Info().Msgf("Sensord %s, %s, %s", Version, Commit, BuildTime)
+		log.Info().Msgf("%s/%s %s", runtime.GOOS, runtime.GOARCH, runtime.Version())
+		return
 	}
 
 	log.Info().Msgf("Sensord %s", Version)
@@ -77,5 +84,7 @@ func main() {
 }
 
 var (
-	Version = "DEV"
+	Version   = "DEV"
+	Commit    = ""
+	BuildTime = ""
 )
