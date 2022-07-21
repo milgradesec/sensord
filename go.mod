@@ -1,6 +1,6 @@
 module github.com/milgradesec/sensord
 
-go 1.17
+go 1.18
 
 require (
 	github.com/rs/zerolog v1.27.0
