@@ -1,11 +1,12 @@
-name: Check Goreleaser config
+name: Check Goreleaser
 
 on: [push, pull_request]
 
 jobs:
   goreleaser-config:
+    name: Check
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Check out code
         uses: actions/checkout@v3
