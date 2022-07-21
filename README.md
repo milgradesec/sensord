@@ -41,9 +41,15 @@ sudo systemctl status sensord
 ## Install/Upgrade Go
 
 ```shell
-wget https://go.dev/dl/go1.18.3.linux-armv6l.tar.gz
+# Set Go version to install
+export GO_VERSION = 1.18.4
+
+# Download & install
+wget https://go.dev/dl/go$GO_VERSION.linux-armv6l.tar.gz
 sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf go1.18.3.linux-armv6l.tar.gz
+sudo tar -C /usr/local -xzf go$GO_VERSION.linux-armv6l.tar.gz
+
+# Add to $PATH
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/home/pi/go/bin
 ```
