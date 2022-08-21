@@ -42,7 +42,7 @@ sudo systemctl status sensord
 
 ```shell
 # Set Go version to install
-export GO_VERSION = 1.18.4
+export GO_VERSION=1.19
 
 # Download & install
 wget https://go.dev/dl/go$GO_VERSION.linux-armv6l.tar.gz
