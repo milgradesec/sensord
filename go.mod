@@ -3,7 +3,7 @@ module github.com/milgradesec/sensord
 go 1.18
 
 require (
-	github.com/rs/zerolog v1.27.0
+	github.com/rs/zerolog v1.28.0
 	go.bug.st/serial v1.3.5
 	tinygo.org/x/bluetooth v0.5.0
 )
