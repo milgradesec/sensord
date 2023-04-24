@@ -1,4 +1,4 @@
-# Agrosense BLE daemon
+# Agrosense BLE (Bluetooth Low Energy) daemon
 
 ## Building
 
