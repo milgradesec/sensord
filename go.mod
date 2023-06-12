@@ -5,11 +5,11 @@ go 1.18
 require (
 	github.com/rs/zerolog v1.29.1
 	go.bug.st/serial v1.5.0
-	tinygo.org/x/bluetooth v0.6.0
+	tinygo.org/x/bluetooth v0.7.0
 )
 
 require (
-	github.com/saltosystems/winrt-go v0.0.0-20220826130236-ddc8202da421 // indirect
+	github.com/saltosystems/winrt-go v0.0.0-20230510070731-e096b9afa761 // indirect
 	github.com/tinygo-org/cbgo v0.0.4 // indirect
 )
 
