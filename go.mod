@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/rs/zerolog v1.30.0
-	go.bug.st/serial v1.6.0
+	go.bug.st/serial v1.6.1
 	tinygo.org/x/bluetooth v0.7.0
 )
 
