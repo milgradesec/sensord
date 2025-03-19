@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/rs/zerolog v1.33.0
-	go.bug.st/serial v1.6.2
+	go.bug.st/serial v1.6.3
 	tinygo.org/x/bluetooth v0.11.0
 )
 
@@ -25,5 +25,5 @@ require (
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect
-	golang.org/x/sys v0.12.0 // indirect
+	golang.org/x/sys v0.19.0 // indirect
 )
