@@ -1,6 +1,6 @@
 module github.com/milgradesec/sensord
 
-go 1.18
+go 1.23.0
 
 require (
 	github.com/rs/zerolog v1.34.0
@@ -21,9 +21,9 @@ require (
 	github.com/creack/goselect v0.1.2 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/godbus/dbus/v5 v5.1.0 // indirect
-	github.com/kardianos/service v1.2.2
+	github.com/kardianos/service v1.2.4
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect
-	golang.org/x/sys v0.19.0 // indirect
+	golang.org/x/sys v0.34.0 // indirect
 )
