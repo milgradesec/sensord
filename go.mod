@@ -5,7 +5,7 @@ go 1.23.0
 require (
 	github.com/rs/zerolog v1.34.0
 	go.bug.st/serial v1.6.4
-	tinygo.org/x/bluetooth v0.12.0
+	tinygo.org/x/bluetooth v0.13.0
 )
 
 require (
@@ -14,7 +14,7 @@ require (
 	github.com/soypat/seqs v0.0.0-20250124201400-0d65bc7c1710 // indirect
 	github.com/tinygo-org/cbgo v0.0.4 // indirect
 	github.com/tinygo-org/pio v0.2.0 // indirect
-	golang.org/x/exp v0.0.0-20240808152545-0cdaa3abc0fa // indirect
+	golang.org/x/exp v0.0.0-20241204233417-43b7b7cde48d // indirect
 )
 
 require (
